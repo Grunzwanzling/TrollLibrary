@@ -29,9 +29,11 @@ public class MouseTrap {
 	JFrame frame;
 	JPanel panel;
 
-	public MouseTrap() throws AWTException, InterruptedException {
+	public void showMouseTrap(int x, int y, int length, int height,
+			String title, String buttonText, String textAfterwards)
+			throws AWTException, InterruptedException {
 		frame = new JFrame();
-		frame.setBounds(500, 300, 200, 200);
+		frame.setBounds(x, y, length, height);
 		frame.setUndecorated(true);
 		frame.setVisible(true);
 		panel = new JPanel();
@@ -39,13 +41,13 @@ public class MouseTrap {
 		panel.setBorder(BorderFactory.createLineBorder(Color.black));
 		panel.setLayout(null);
 
-		JLabel lblMouseTrap = new JLabel("Mouse Trap!");
+		JLabel lblMouseTrap = new JLabel(title);
 		lblMouseTrap.setBounds(1, 11, 198, 37);
 		lblMouseTrap.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMouseTrap.setFont(new Font("Tahoma", Font.BOLD, 30));
 		panel.add(lblMouseTrap);
 
-		JButton btnClose = new JButton("Close");
+		JButton btnClose = new JButton(buttonText);
 		btnClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -57,18 +59,18 @@ public class MouseTrap {
 
 		Robot rob = new Robot();
 
-		PointerInfo x = MouseInfo.getPointerInfo();
-		Point y = x.getLocation();
+		PointerInfo pi = MouseInfo.getPointerInfo();
+		Point p = pi.getLocation();
 
-		while (!(y.getX() > frame.getX()
-				&& y.getX() < frame.getX() + frame.getWidth() && (y.getY() > frame
-				.getY() && y.getY() < frame.getY() + frame.getHeight()))) {
+		while (!(p.getX() > frame.getX()
+				&& p.getX() < frame.getX() + frame.getWidth() && (p.getY() > frame
+				.getY() && p.getY() < frame.getY() + frame.getHeight()))) {
 			PointerInfo r = MouseInfo.getPointerInfo();
-			y = r.getLocation();
+			p = r.getLocation();
 		}
 
 		btnClose.setVisible(false);
-		lblMouseTrap.setText("Dumbass -.-");
+		lblMouseTrap.setText(textAfterwards);
 
 		while (true) {
 			PointerInfo a = MouseInfo.getPointerInfo();
@@ -93,7 +95,9 @@ public class MouseTrap {
 
 	public static void main(String[] args) throws AWTException,
 			InterruptedException {
-		new MouseTrap();
+		MouseTrap trap = new MouseTrap();
+		trap.showMouseTrap(300, 300, 500, 500, "MouseTrap", "Close",
+				"Dumbass -.-");
 
 	}
 }
