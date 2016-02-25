@@ -29,6 +29,26 @@ public class MouseTrap {
 	JFrame frame;
 	JPanel panel;
 
+	/**
+	 * Show a unsuspicious frame that will trap the mouse and won't let it go xD
+	 * 
+	 * @param x
+	 *            The X position of the frame
+	 * @param y
+	 *            The Y position of the frame
+	 * @param length
+	 *            The length of the frame
+	 * @param height
+	 *            The height of the frame
+	 * @param title
+	 *            The text to display on the frame
+	 * @param buttonText
+	 *            The text to display on the button
+	 * @param textAfterwards
+	 *            The text to display on the frame after the mouse is captured
+	 * @throws AWTException
+	 * @throws InterruptedException
+	 */
 	public void showMouseTrap(int x, int y, int length, int height,
 			String title, String buttonText, String textAfterwards)
 			throws AWTException, InterruptedException {
@@ -65,8 +85,8 @@ public class MouseTrap {
 		while (!(p.getX() > frame.getX()
 				&& p.getX() < frame.getX() + frame.getWidth() && (p.getY() > frame
 				.getY() && p.getY() < frame.getY() + frame.getHeight()))) {
-			PointerInfo r = MouseInfo.getPointerInfo();
-			p = r.getLocation();
+			pi = MouseInfo.getPointerInfo();
+			p = pi.getLocation();
 		}
 
 		btnClose.setVisible(false);
@@ -96,7 +116,7 @@ public class MouseTrap {
 	public static void main(String[] args) throws AWTException,
 			InterruptedException {
 		MouseTrap trap = new MouseTrap();
-		trap.showMouseTrap(300, 300, 500, 500, "MouseTrap", "Close",
+		trap.showMouseTrap(300, 300, 200, 200, "MouseTrap", "Close",
 				"Dumbass -.-");
 
 	}
