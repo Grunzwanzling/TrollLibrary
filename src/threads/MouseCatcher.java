@@ -15,6 +15,13 @@ public class MouseCatcher extends Thread {
 	boolean stop;
 	Robot rob;
 
+	/**
+	 * Will hold the Mouse on one specific position
+	 * 
+	 * @param x
+	 * @param y
+	 * @throws AWTException
+	 */
 	public MouseCatcher(int x, int y) throws AWTException {
 		this.x = x;
 		this.y = y;
