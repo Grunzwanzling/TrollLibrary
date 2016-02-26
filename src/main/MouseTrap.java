@@ -113,6 +113,13 @@ public class MouseTrap {
 
 	}
 
+	public static void stickMouseTo(int x, int y) {
+
+		
+		
+		
+	}
+
 	public static void main(String[] args) throws AWTException,
 			InterruptedException {
 		MouseTrap trap = new MouseTrap();
