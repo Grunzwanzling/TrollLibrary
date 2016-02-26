@@ -3,24 +3,35 @@
  */
 package threads;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+
 /**
  * @author Maximilian
  *
  */
-class MouseCatcher extends Thread {
-	String text;
+public class MouseCatcher extends Thread {
+	int x, y, speed = 1;
+	boolean stop;
+	Robot rob;
 
-	public TextThread(String text) {
-		this.text = text;
+	public MouseCatcher(int x, int y) throws AWTException {
+		this.x = x;
+		this.y = y;
+		stop = false;
+		rob = new Robot();
+		start();
+	}
+
+	public void abort() {
+		stop = true;
 	}
 
 	public void run() {
-		for (int i = 0; i < 10; i++) {
-			try {
-				sleep((int) (Math.random() * 1000));
-			} catch (InterruptedException e) {
-			}
-			System.out.println(text);
+		while (!stop) {
+
+			rob.mouseMove(x, y);
+
 		}
 	}
 }

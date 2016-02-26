@@ -20,6 +20,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import threads.MouseCatcher;
+
 /**
  * @author Maximilian
  *
@@ -37,9 +39,9 @@ public class MouseTrap {
 	 * @param y
 	 *            The Y position of the frame
 	 * @param length
-	 *            The length of the frame
+	 *            The length of the frame (use 200)
 	 * @param height
-	 *            The height of the frame
+	 *            The height of the frame (use 200)
 	 * @param title
 	 *            The text to display on the frame
 	 * @param buttonText
@@ -113,18 +115,11 @@ public class MouseTrap {
 
 	}
 
-	public static void stickMouseTo(int x, int y) {
-
-		
-		
-		
-	}
-
 	public static void main(String[] args) throws AWTException,
 			InterruptedException {
-		MouseTrap trap = new MouseTrap();
-		trap.showMouseTrap(300, 300, 200, 200, "MouseTrap", "Close",
-				"Dumbass -.-");
+		MouseCatcher m = new MouseCatcher(200, 200);
+		Thread.sleep(10000);
+		m.abort();
 
 	}
 }
