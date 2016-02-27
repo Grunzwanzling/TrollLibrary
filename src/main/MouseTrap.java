@@ -20,8 +20,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import threads.ResourceLeaker;
-
 /**
  * @author Maximilian
  *
@@ -115,11 +113,4 @@ public class MouseTrap {
 
 	}
 
-	public static void main(String[] args) throws AWTException,
-			InterruptedException {
-		ResourceLeaker l = new ResourceLeaker(true, false, false);
-		Thread.sleep(30000);
-		System.exit(0);
-
-	}
 }
