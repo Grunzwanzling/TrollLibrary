@@ -4,6 +4,8 @@
 package threads;
 
 import java.awt.AWTException;
+import java.awt.MouseInfo;
+import java.awt.Point;
 import java.awt.Robot;
 
 /**
@@ -11,12 +13,12 @@ import java.awt.Robot;
  *
  */
 public class MouseCatcher extends Thread {
-	int x, y, speed = 1;
+	int x, y;
 	boolean stop;
 	Robot rob;
 
 	/**
-	 * Will hold the Mouse on one specific position
+	 * Will hold the mouse on one specific position
 	 * 
 	 * @param x
 	 * @param y
@@ -30,6 +32,19 @@ public class MouseCatcher extends Thread {
 		start();
 	}
 
+	/**
+	 * Will hold the mouse on the current position
+	 * 
+	 * @throws AWTException
+	 */
+	public MouseCatcher() throws AWTException {
+		Point p = MouseInfo.getPointerInfo().getLocation();
+		new MouseCatcher((int) p.getX(), (int) p.getY());
+	}
+
+	/**
+	 * Set the mouse free
+	 */
 	public void abort() {
 		stop = true;
 	}
